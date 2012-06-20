@@ -13,13 +13,16 @@ int seqrow;
 int step, stepstate;
 int prevstep;
 
+
+int[] seq1state = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+
 void setup() {
   //frameRate(1);
   mocoge = new OscP5(this,1234);  ///coge's OSC output port
   cogome = new OscP5(this,8000);  ///monomeserials output port
   monomeIn = new NetAddress("127.0.0.1", 8080); ///monomeserials input port
   cogeIn = new NetAddress("127.0.0.1", 1235); ///coge's OSC input port
-  
   m = new Monome(8,16,"cogeVJ");
   step = 0;
   m.setCol(0,0);
@@ -37,7 +40,8 @@ void oscEvent(OscMessage theOscMessage) {
  ////SEQ1EVENTS
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos1")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
-    println(stepstate);
+    seq1state[0] = stepstate;
+    println(seq1state);
     m.setLed(0,0,stepstate);
   }
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos2")==true) {
@@ -58,8 +62,11 @@ void oscEvent(OscMessage theOscMessage) {
     if (row < 2) { ///this must be coming from row 1 or 2, so the sequencers!)
       int col = int(theOscMessage.get(0).intValue());
       int state = int(theOscMessage.get(2).intValue());
-      //println(stepstate);
-      setseq(row+1,col+1,state);
+      if (state == 1) {
+        //println(stepstate);
+        setseq(row+1,col+1,state);
+        seq1state[0] = state;
+      }
     }
   } 
 }
