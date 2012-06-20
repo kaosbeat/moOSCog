@@ -27,9 +27,10 @@ void setup() {
   
 void oscEvent(OscMessage theOscMessage) {
 ////COGEMESSAGES
-//if(theOscMessage.checkTypetag("f")) {
+//if(theOscMessage.checkTypetag("iii")) {
   ///we're sure the message is form coge, as it sends nothing but single floats
 //print(" addrpattern: "+theOscMessage.addrPattern());
+//}
   if(theOscMessage.checkAddrPattern("/cogeVJ/seqPdOS")==true) {
     step = int(16 * theOscMessage.get(0).floatValue())+1;
   }
@@ -48,17 +49,19 @@ void oscEvent(OscMessage theOscMessage) {
     stepstate = int(theOscMessage.get(0).floatValue());
     println(stepstate);
     m.setLed(2,0,stepstate);
- // }
-} else {
+  }
+//} else {
 ////MONOMEMESSAGES
     if(theOscMessage.checkAddrPattern("/cogeVJ/press")==true) {
-    row = int(theOscMessage.get(0).intValue());
-    col = int(theOscMessage.get(1).intValue());
-    state = int(theOscMessage.get(2).intValue());
-    //println(stepstate);
-    m.setLed(0,0,stepstate);
-  }
-  
+      println ("buttonpress");
+    int row = int(theOscMessage.get(1).intValue());
+    if (row < 2) { ///this must be coming from row 1 or 2, so the sequencers!)
+      int col = int(theOscMessage.get(0).intValue());
+      int state = int(theOscMessage.get(2).intValue());
+      //println(stepstate);
+      setseq(row+1,col+1,state);
+    }
+  } 
 }
 
 
