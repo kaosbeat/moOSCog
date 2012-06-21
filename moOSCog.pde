@@ -48,16 +48,18 @@ void oscEvent(OscMessage theOscMessage) {
     }
   }
  ////SEQ1EVENTS
-  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos1")==true) {
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos0")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
     m.setLed(0,0,stepstate);
+    m.rowStates[0].set(0,intToBoolean(stepstate));
+    
   }
-  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos2")==true) {
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos1")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
     println("trying /cogeVJ/seq1pos2 " + stepstate);
     m.setLed(1,0,stepstate);
   }
-  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos3")==true) {
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos2")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
     m.setLed(2,0,stepstate);
   }
