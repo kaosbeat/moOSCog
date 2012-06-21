@@ -14,7 +14,7 @@ int step, stepstate;
 int prevstep;
 
 
-int[] seq1state = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+//int[] seq1state = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 void setup() {
   //frameRate(1);
@@ -24,7 +24,7 @@ void setup() {
   cogeIn = new NetAddress("127.0.0.1", 1235); ///coge's OSC input port
   m = new Monome(8,16,"cogeVJ");
   step = 0;
-  m.setCol(0,0);
+  //m.setCol(0,0);
 }
   
 void oscEvent(OscMessage theOscMessage) {
@@ -35,36 +35,52 @@ void oscEvent(OscMessage theOscMessage) {
 //}
   if(theOscMessage.checkAddrPattern("/cogeVJ/seqPOS")==true) {
     step = int(16 * theOscMessage.get(0).floatValue())+1;
+        if (step != prevstep) {
+          //m.setCol(prevstep, 0);
+         // m.invertCol(prevstep);
+         // m.invertCol(step);
+          //m.setCol(step, 1);
+          m.invertLed(prevstep,0);
+          m.invertLed(step,0);
+          prevstep = step;
+          println("currentstate: " + m.rowStates[0]);
+       
+    }
   }
  ////SEQ1EVENTS
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos1")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
-    seq1state[0] = stepstate;
-    println(seq1state);
     m.setLed(0,0,stepstate);
   }
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos2")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
-    println(stepstate);
+    println("trying /cogeVJ/seq1pos2 " + stepstate);
     m.setLed(1,0,stepstate);
   }
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos3")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
-    println(stepstate);
     m.setLed(2,0,stepstate);
   }
 //} else {
 ////MONOMEMESSAGES
     if(theOscMessage.checkAddrPattern("/cogeVJ/press")==true) {
-      println ("buttonpress");
     int row = int(theOscMessage.get(1).intValue());
     if (row < 2) { ///this must be coming from row 1 or 2, so the sequencers!)
       int col = int(theOscMessage.get(0).intValue());
       int state = int(theOscMessage.get(2).intValue());
-      if (state == 1) {
-        //println(stepstate);
-        setseq(row+1,col+1,state);
-        seq1state[0] = state;
+      if (state == 1){
+        if (m.rowStates[row].get(col) == true) {
+          print(row +","+col+","+state);
+          setSeq(col,row,0);
+          m.setLed(col,row,0);
+          m.rowStates[row].set(col,false);
+          //m.rowStates[row].flip(col);
+        }else {
+          setSeq(col,row,1);
+          m.setLed(col,row,1);
+          m.rowStates[row].set(col,true);
+          //m.rowStates[row].flip(col);
+        }
       }
     }
   } 
@@ -73,13 +89,7 @@ void oscEvent(OscMessage theOscMessage) {
 
 void draw () {
 //  m.setCol(step, 255);
-    if (step != prevstep) {
-          //m.setCol(prevstep, 0);
-          m.invertCol(prevstep);
-          m.invertCol(step);
-          //m.setCol(step, 1);
-          prevstep = step;
-    }
+
 
 
 }
