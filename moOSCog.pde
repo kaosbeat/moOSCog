@@ -16,7 +16,6 @@ int prevstep;
 
 int[] seq1state = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-
 void setup() {
   //frameRate(1);
   mocoge = new OscP5(this,1234);  ///coge's OSC output port
@@ -34,7 +33,7 @@ void oscEvent(OscMessage theOscMessage) {
   ///we're sure the message is form coge, as it sends nothing but single floats
 //print(" addrpattern: "+theOscMessage.addrPattern());
 //}
-  if(theOscMessage.checkAddrPattern("/cogeVJ/seqPdOS")==true) {
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seqPOS")==true) {
     step = int(16 * theOscMessage.get(0).floatValue())+1;
   }
  ////SEQ1EVENTS

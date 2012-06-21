@@ -1,5 +1,6 @@
 class Monome {
-
+  
+  BitSet[] rowStates; //internal bookkeeping
   int dim_x = 8;
   int dim_y = 16;
   String prefix = "cogeVJ";
@@ -8,6 +9,16 @@ class Monome {
     this.dim_x = dim_x;
     this.dim_y = dim_y;
     this.prefix = prefix;
+    rowStates = new BitSet[8];
+    for(int i=0;i<rowStates.length;i++){
+      rowStates[i] = new BitSet(16);
+      rowStates[i].set(0,16,false);
+      //rowStates[i].flip(16);
+      println (rowStates[i].cardinality() );
+      println(rowStates[i].get(15));
+    }
+    
+    
   }
   
   void setCol(int col, int state) {
@@ -29,6 +40,13 @@ class Monome {
       Msg.add(row);
       Msg.add(state);
       cogome.send(Msg, monomeIn);
+      rowStates[i].set(0,16,false);
+  } 
+      
+  void invertCol(int col) {
+     int curState = 1;
+     
+     
   }
 }
 
