@@ -74,8 +74,10 @@ void oscEvent(OscMessage theOscMessage) {
 void draw () {
 //  m.setCol(step, 255);
     if (step != prevstep) {
-          m.setCol(prevstep, 0);
-          m.setCol(step, 1);
+          //m.setCol(prevstep, 0);
+          m.invertCol(prevstep);
+          m.invertCol(step);
+          //m.setCol(step, 1);
           prevstep = step;
     }
 

@@ -9,7 +9,7 @@ class Monome {
     this.dim_x = dim_x;
     this.dim_y = dim_y;
     this.prefix = prefix;
-    rowStates = new BitSet[8];
+    this.rowStates = new BitSet[8];
     for(int i=0;i<rowStates.length;i++){
       rowStates[i] = new BitSet(16);
       rowStates[i].set(0,16,false);
@@ -32,6 +32,10 @@ class Monome {
       }
      // println(stepMsg);
       cogome.send(Msg, monomeIn);
+      for(int i=0;i<rowStates.length;i++){
+        rowStates[i].set(col,intToBoolean(state));
+      }
+      
   }
   
   void setLed(int col, int row, int state){
@@ -40,13 +44,16 @@ class Monome {
       Msg.add(row);
       Msg.add(state);
       cogome.send(Msg, monomeIn);
-      rowStates[i].set(0,16,false);
+      rowStates[row].set(col,intToBoolean(state));
   } 
       
   void invertCol(int col) {
-     int curState = 1;
-     
-     
+      for(int i=0;i<rowStates.length;i++){
+        rowStates[i].flip(col);
+        
+        int state = rowStates[i].get(col)? 1 : 0;
+        setLed(col, i, state);
+      }
   }
 }
 
