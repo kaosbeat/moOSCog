@@ -3,3 +3,10 @@ void setSeq(int pos, int seq, int state) {
       Msg.add(float(state));
       mocoge.send(Msg, cogeIn);
 }
+
+
+void setSeqs() {
+      OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1pos");
+      Msg.add(0.5);
+      mocoge.send(Msg, cogeIn);
+}

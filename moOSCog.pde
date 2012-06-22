@@ -7,14 +7,8 @@ Monome m;
 ///monome app parameters
 int seqrow;
 
-
-
 ///coges parameters
-int step, stepstate;
-int prevstep;
-
-
-//int[] seq1state = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int seq0step, seq1step,stepstate, seq0prevstep, seq1prevstep;
 
 void setup() {
   //frameRate(1);
@@ -23,7 +17,8 @@ void setup() {
   monomeIn = new NetAddress("127.0.0.1", 8080); ///monomeserials input port
   cogeIn = new NetAddress("127.0.0.1", 1235); ///coge's OSC input port
   m = new Monome(8,16,"cogeVJ");
-  step = 0;
+  seq0step = 0;
+  seq1step = 0;
   //m.setCol(0,0);
 }
   
@@ -33,21 +28,24 @@ void oscEvent(OscMessage theOscMessage) {
   ///we're sure the message is form coge, as it sends nothing but single floats
 //print(" addrpattern: "+theOscMessage.addrPattern());
 //}
-  if(theOscMessage.checkAddrPattern("/cogeVJ/seqPOS")==true) {
-    step = int(16 * theOscMessage.get(0).floatValue())+1;
-        if (step != prevstep) {
-          //m.setCol(prevstep, 0);
-         // m.invertCol(prevstep);
-         // m.invertCol(step);
-          //m.setCol(step, 1);
-          m.invertLed(prevstep,0);
-          m.invertLed(step,0);
-          prevstep = step;
-          println("currentstate: " + m.rowStates[0]);
-       
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos")==true) {
+    seq0step = int(16 * theOscMessage.get(0).floatValue());
+        if (seq0step != seq0prevstep) {
+          m.invertLed(seq0prevstep,0);
+          m.invertLed(seq0step,0);
+          seq0prevstep = seq0step;
     }
   }
- ////SEQ1EVENTS
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos")==true) {
+    seq1step = int(16 * theOscMessage.get(0).floatValue());
+        if (seq1step != seq1prevstep) {
+          m.invertLed(seq1prevstep,1);
+          m.invertLed(seq1step,1);
+          seq1prevstep = seq1step;
+    }
+  }
+  
+ ////SEQ0EVENTS
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos0")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
     m.setLed(0,0,stepstate);
@@ -91,7 +89,7 @@ void oscEvent(OscMessage theOscMessage) {
 
 void draw () {
 //  m.setCol(step, 255);
-
+  //setSeqs();
 
 
 }
