@@ -50,24 +50,89 @@ void oscEvent(OscMessage theOscMessage) {
     stepstate = int(theOscMessage.get(0).floatValue());
     m.setLed(0,0,stepstate);
     m.rowStates[0].set(0,intToBoolean(stepstate));
-    
   }
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos1")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
-    println("trying /cogeVJ/seq1pos2 " + stepstate);
     m.setLed(1,0,stepstate);
+    m.rowStates[0].set(1,intToBoolean(stepstate));
   }
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos2")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
     m.setLed(2,0,stepstate);
+    m.rowStates[0].set(2,intToBoolean(stepstate));  
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos3")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(3,0,stepstate);
+    m.rowStates[0].set(3,intToBoolean(stepstate));
+  }  if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos4")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(4,0,stepstate);
+    m.rowStates[0].set(4,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos5")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(5,0,stepstate);
+    m.rowStates[0].set(5,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos6")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(6,0,stepstate);
+    m.rowStates[0].set(6,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos7")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(7,0,stepstate);
+    m.rowStates[0].set(7,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos8")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(8,0,stepstate);
+    m.rowStates[0].set(8,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos9")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(9,0,stepstate);
+    m.rowStates[0].set(9,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos10")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(10,0,stepstate);
+    m.rowStates[0].set(10,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos11")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(11,0,stepstate);
+    m.rowStates[0].set(11,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos12")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(12,0,stepstate);
+    m.rowStates[0].set(12,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos13")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(13,0,stepstate);
+    m.rowStates[0].set(13,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos14")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(14,0,stepstate);
+    m.rowStates[0].set(14,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos15")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(15,0,stepstate);
+    m.rowStates[0].set(15,intToBoolean(stepstate));
   }
 //} else {
 ////MONOMEMESSAGES
     if(theOscMessage.checkAddrPattern("/cogeVJ/press")==true) {
     int row = int(theOscMessage.get(1).intValue());
+    int col = int(theOscMessage.get(0).intValue());
+    int state = int(theOscMessage.get(2).intValue());
     if (row < 2) { ///this must be coming from row 1 or 2, so the sequencers!)
-      int col = int(theOscMessage.get(0).intValue());
-      int state = int(theOscMessage.get(2).intValue());
+
       if (state == 1){
         if (m.rowStates[row].get(col) == true) {
           print(row +","+col+","+state);
@@ -81,6 +146,10 @@ void oscEvent(OscMessage theOscMessage) {
           m.rowStates[row].set(col,true);
           //m.rowStates[row].flip(col);
         }
+      }
+    } else if(row == 7 && col == 15) {
+      if (state == 1) {
+        tapBPM(state); 
       }
     }
   } 
