@@ -11,8 +11,8 @@ class Monome {
     this.prefix = prefix;
     this.rowStates = new BitSet[8];
     for(int i=0;i<rowStates.length;i++){
-      rowStates[i] = new BitSet(16);
-      rowStates[i].set(0,16,false);
+      rowStates[i] = new BitSet(dim_y);
+     // rowStates[i].set(0,16,false);
     }
     
     
