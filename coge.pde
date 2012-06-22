@@ -11,7 +11,12 @@ void tapBPM(int state) {
       mocoge.send(Msg, cogeIn);
 }
   
-
+void masterLayer(int layer){
+  println("blah");
+     OscMessage Msg = new OscMessage("/"+ m.prefix + "/masterLayer");
+     Msg.add(float(layer));
+   //  m.rowStates[row].set(col,true);
+}
 void setSeqs() {
       OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1pos");
       Msg.add(0.5);

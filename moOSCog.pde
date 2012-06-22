@@ -147,6 +147,12 @@ void oscEvent(OscMessage theOscMessage) {
           //m.rowStates[row].flip(col);
         }
       }
+    /*} else if(col == 0 && row > 3 && row < 6 ) {
+      
+      if (state == 1) {
+        masterLayer(row); 
+      }
+    */  
     } else if(row == 7 && col == 15) {
       if (state == 1) {
         tapBPM(state); 
