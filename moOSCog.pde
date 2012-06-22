@@ -158,13 +158,46 @@ void oscEvent(OscMessage theOscMessage) {
       if (state == 1) {
         masterLayer(row); 
       }
-    } else if(col == 1 && row > 3 && row < 8 ) {
-      if (state == 1) {
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {6});}
-        if (row == 6) { masterEffect(row, col,new int[] {5});}
+    } else if(col > 0 && col < 4 && row > 2 && row < 8 && state == 1) {
+      if (col == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {5});}
+        if (row == 5) { masterEffect(row, col,new int[] {4});}
+        if (row == 6) { masterEffect(row, col,new int[] {7});}
+        if (row == 7) { masterEffect(row, col,new int[] {6});}
+      } else if (col == 2) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {5});}
+        if (row == 5) { masterEffect(row, col,new int[] {4});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+      } else if (col == 3) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {5});}
+        if (row == 5) { masterEffect(row, col,new int[] {4});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+        if (row == 7) { masterEffect(row, col,new int[] {});}
       }
     
+   } else if(col == 5 && row > 2 && row < 8 ) {
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+      }
+      } else if(col == 6 && row > 2 && row < 8 ) {
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+        if (row == 7) { masterEffect(row, col,new int[] {});}
+      } 
+       } else if(col == 7 && row > 2 && row < 8 ) {
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+      }
     
      
     } else if(row == 7 && col == 15) {

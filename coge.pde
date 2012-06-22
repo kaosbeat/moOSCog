@@ -13,45 +13,44 @@ void tapBPM(int state) {
 }
   
 void masterLayer(int layer){
-  //println("blah" + layer);
   if (m.rowStates[layer].get(0) == false) { 
-     //m.rowStates[row].set(col,true);
      OscMessage Msg = new OscMessage("/"+ m.prefix + "/masterLayer" + layer);
      Msg.add(1.0);
      mocoge.send(Msg, cogeIn);
      m.setLed(0,layer,1);
      if (layer == 4) {
-       //OscMessage Msg = new OscMessage("/"+ m.prefix + "/masterLayer" + layer);
-       //Msg.add(0.0);
-       //mocoge.send(Msg, cogeIn);
        m.setLed(0,5,0);
      } else if (layer == 5){
-       //OscMessage Msg = new OscMessage("/"+ m.prefix + "/masterLayer" + layer);
-       //Msg.add(0.0);
-       //mocoge.send(Msg, cogeIn);
        m.setLed(0,4,0);
      }
   }
 }
      
 void masterEffect(int row, int col, int[] toggle){
-     
-    if (m.rowStates[row].get(col) == false) { 
+    if (m.rowStates[row].get(col) == false) {
+      println("this button is off");
+      OscMessage Msg = new OscMessage("/"+ m.prefix + "/master" +col+ "Effect"+row);
+      Msg.add(1.0); 
+      mocoge.send(Msg, cogeIn);  
       m.setLed(col,row,1);
       for (int i:toggle) {
         println (i);
         m.setLed(col,i,0);
       }
-      OscMessage Msg = new OscMessage("/"+ m.prefix + "/masterEffect"+row);
-      Msg.add(1.0); 
-      mocoge.send(Msg, cogeIn);
-      
     } else if (toggle.length == 0) {
-      OscMessage Msg = new OscMessage("/"+ m.prefix + "/masterEffect"+row); 
+      println("this button is on, but its not a radio button");
+      m.setLed(col,row,0);
+      OscMessage Msg = new OscMessage("/"+ m.prefix + "/master" +col+ "Effect"+row); 
       Msg.add(0.0);
       mocoge.send(Msg, cogeIn);
     }  
   }
+  
+  
+void chain1Effect(int row, int col, int[] toggle){
+  
+  
+}
   
 void setSeqs() {
       OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1pos");
