@@ -11,7 +11,13 @@ void tapBPM(int state) {
       Msg.add(float(state));
       mocoge.send(Msg, cogeIn);
 }
-  
+
+void banktrigger(int col, int row) {
+      OscMessage Msg = new OscMessage("/"+ m.prefix + "/bank"+row+ "slot" +col );
+      Msg.add(1.0);
+      mocoge.send(Msg, cogeIn);
+}
+
 void masterLayer(int layer){
   if (m.rowStates[layer].get(0) == false) { 
      OscMessage Msg = new OscMessage("/"+ m.prefix + "/masterLayer" + layer);

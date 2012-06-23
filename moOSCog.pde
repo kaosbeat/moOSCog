@@ -244,7 +244,7 @@ void oscEvent(OscMessage theOscMessage) {
     int col = int(theOscMessage.get(0).intValue());
     int state = int(theOscMessage.get(2).intValue());
     if (row < 2) { ///this must be coming from row 1 or 2, so the sequencers!)
-      if (state == 1){
+      if (state == 1 && m.rowStates[2].get(0) == true){
         if (m.rowStates[row].get(col) == true) {
           print(row +","+col+","+state);
           setSeq(col,row,0);
@@ -257,6 +257,12 @@ void oscEvent(OscMessage theOscMessage) {
          // m.rowStates[row].set(col,true);
           //m.rowStates[row].flip(col);
         }
+      }
+      if (state == 1 && row == 0 && m.rowStates[2].get(0) == false){
+         banktrigger(col,row);
+      }
+      if (state == 1 && row == 1 && m.rowStates[2].get(15) == false){
+         banktrigger(col,row);
       }
     } else if(col == 0 && row > 3 && row < 6 ) {
       if (state == 1) {
