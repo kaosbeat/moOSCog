@@ -49,12 +49,28 @@ void oscEvent(OscMessage theOscMessage) {
           seq1prevstep = seq1step;
     }
   }
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq0toggle")==true) {
+    int seq0 = int(theOscMessage.get(0).floatValue());
+    //if (m.rowStates[2].get(0) == true) {
+    m.setLed(0,2,seq0);
+    //}
+  }
   
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1toggle")==true) {
+    int seq1 = int(theOscMessage.get(0).floatValue());
+    //if (m.rowStates[2].get(0) == true) {
+    m.setLed(15,2,seq1);
+    //}
+  }
+  
+  
+  
+
  ////SEQ0EVENTS
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos0")==true) {
     stepstate = int(theOscMessage.get(0).floatValue());
     m.setLed(0,0,stepstate);
-    println("cogemessage");
+    //println("cogemessage");
     //m.rowStates[0].set(0,intToBoolean(stepstate));
   }
   if(theOscMessage.checkAddrPattern("/cogeVJ/seq0pos1")==true) {
@@ -133,6 +149,94 @@ void oscEvent(OscMessage theOscMessage) {
     m.setLed(15,0,stepstate);
     //m.rowStates[0].set(15,intToBoolean(stepstate));
   }
+  
+  
+  
+   ////seq1EVENTS
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos0")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(0,1,stepstate);
+    println("cogemessage");
+    //m.rowStates[0].set(0,intToBoolean(stepstate));
+  }
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos1")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(1,1,stepstate);
+   // m.rowStates[0].set(1,intToBoolean(stepstate));
+  }
+  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos2")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(2,1,stepstate);
+    //m.rowStates[0].set(2,intToBoolean(stepstate));  
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos3")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(3,1,stepstate);
+   // m.rowStates[0].set(3,intToBoolean(stepstate));
+  }  if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos4")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(4,1,stepstate);
+    //m.rowStates[0].set(4,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos5")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(5,1,stepstate);
+    //m.rowStates[0].set(5,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos6")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(6,1,stepstate);
+   // m.rowStates[0].set(6,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos7")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(7,1,stepstate);
+    //m.rowStates[0].set(7,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos8")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(8,1,stepstate);
+    //println("just ran setLed " +stepstate);
+   // m.rowStates[0].set(8,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos9")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(9,1,stepstate);
+    //println("just ran setLed " +stepstate);
+  //  m.rowStates[0].set(9,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos10")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(10,1,stepstate);
+  //  m.rowStates[0].set(10,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos11")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(11,1,stepstate);
+    //m.rowStates[0].set(11,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos12")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(12,1,stepstate);
+    //m.rowStates[0].set(12,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos13")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(13,1,stepstate);
+    //m.rowStates[0].set(13,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos14")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(14,1,stepstate);
+   // m.rowStates[0].set(14,intToBoolean(stepstate));
+  }
+    if(theOscMessage.checkAddrPattern("/cogeVJ/seq1pos15")==true) {
+    stepstate = int(theOscMessage.get(0).floatValue());
+    m.setLed(15,1,stepstate);
+    //m.rowStates[0].set(15,intToBoolean(stepstate));
+  }
+
+
 //} else {
 ////MONOMEMESSAGES
     if(theOscMessage.checkAddrPattern("/cogeVJ/press")==true) {
@@ -177,14 +281,14 @@ void oscEvent(OscMessage theOscMessage) {
         if (row == 6) { masterEffect(row, col,new int[] {});}
         if (row == 7) { masterEffect(row, col,new int[] {});}
       }
-    
-   } else if(col == 5 && row > 2 && row < 8 ) {
+   /////FXCHAIN 1
+   } else if(col == 5 && row > 2 && row < 8 ) { //city lights
       if (state == 1) {
         if (row == 3) { masterEffect(row, col,new int[] {});}
         if (row == 4) { masterEffect(row, col,new int[] {});}
         if (row == 5) { masterEffect(row, col,new int[] {});}
       }
-      } else if(col == 6 && row > 2 && row < 8 ) {
+    } else if(col == 6 && row > 2 && row < 8 ) { //Frames and shapes
       if (state == 1) {
         if (row == 3) { masterEffect(row, col,new int[] {});}
         if (row == 4) { masterEffect(row, col,new int[] {});}
@@ -192,15 +296,71 @@ void oscEvent(OscMessage theOscMessage) {
         if (row == 6) { masterEffect(row, col,new int[] {});}
         if (row == 7) { masterEffect(row, col,new int[] {});}
       } 
-       } else if(col == 7 && row > 2 && row < 8 ) {
+    } else if(col == 7 && row > 2 && row < 8 ) { //dot screen
       if (state == 1) {
         if (row == 3) { masterEffect(row, col,new int[] {});}
         if (row == 4) { masterEffect(row, col,new int[] {});}
         if (row == 5) { masterEffect(row, col,new int[] {});}
       }
-    
-     
-    } else if(row == 7 && col == 15) {
+    } else if(col == 8 && row > 2 && row < 8 ) { ///target crosshair
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+        if (row == 7) { masterEffect(row, col,new int[] {});}
+      }
+    } else if(col == 9 && row > 2 && row < 8 ) { ///blazed trail
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+        if (row == 7) { masterEffect(row, col,new int[] {});}
+      }
+   /////FXCHAIN 2
+    } else if(col == 10 && row > 2 && row < 8 ) { /// M8 trace
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+      }
+    } else if(col == 11 && row > 2 && row < 8 ) { ///BAD TV
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+        if (row == 7) { masterEffect(row, col,new int[] {});}
+      }
+    } else if(col == 12 && row > 2 && row < 8 ) { ///RGB shift
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+      }   
+    } else if(col == 13 && row > 2 && row < 8 ) { ///PUSH XY
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+      }
+    } else if(col == 14 && row > 2 && row < 8 ) { ///Konstructivist
+      if (state == 1) {
+        if (row == 3) { masterEffect(row, col,new int[] {});}
+        if (row == 4) { masterEffect(row, col,new int[] {});}
+        if (row == 5) { masterEffect(row, col,new int[] {});}
+        if (row == 6) { masterEffect(row, col,new int[] {});}
+        if (row == 7) { masterEffect(row, col,new int[] {});}
+      }
+    } else if(row == 2) {  ////alll the sequencer controls
+      if (state ==1) {
+         if (col == 0) {seq0toggle();}
+         if (col == 15) {seq1toggle();}
+      }
+      
+    } else if(col == 15 && row == 7) {
       if (state == 1) {
         tapBPM(state); 
       }

@@ -51,6 +51,35 @@ void chain1Effect(int row, int col, int[] toggle){
   
   
 }
+
+void seq0toggle(){
+  OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq0toggle");
+  if (m.rowStates[2].get(0) == false) { 
+    Msg.add(1.0);
+    mocoge.send(Msg, cogeIn);
+    m.setLed(0,2,1);
+  } else {
+    Msg.add(0.0);
+    mocoge.send(Msg, cogeIn);
+    m.setLed(0,2,0);
+  }
+}
+
+void seq1toggle(){
+  OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1toggle");
+  if (m.rowStates[2].get(15) == false) { 
+    Msg.add(1.0);
+    mocoge.send(Msg, cogeIn);
+    m.setLed(15,2,1);
+  } else {
+    Msg.add(0.0);
+    mocoge.send(Msg, cogeIn);
+    m.setLed(15,2,0);
+  }
+}
+
+
+
   
 void setSeqs() {
       OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1pos");
