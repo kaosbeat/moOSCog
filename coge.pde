@@ -1,7 +1,7 @@
 void setSeq(int pos, int seq, int state) {
       OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq" + seq + "pos" + pos );
       Msg.add(float(state));
-      println(Msg);
+      //println(Msg);
       mocoge.send(Msg, cogeIn);
 }
 
@@ -34,7 +34,7 @@ void masterLayer(int layer){
      
 void masterEffect(int row, int col, int[] toggle){
     if (m.rowStates[row].get(col) == false) {
-      println("this button is off");
+      //println("this button is off");
       OscMessage Msg = new OscMessage("/"+ m.prefix + "/master" +col+ "Effect"+row);
       Msg.add(1.0); 
       mocoge.send(Msg, cogeIn);  
@@ -84,6 +84,21 @@ void seq1toggle(){
   }
 }
 
+void bank1select(){
+  OscMessage Msg = new OscMessage("/"+ m.prefix + "/bank1select" + col);
+  m.setLed(col,6,1); 
+ 
+  if (m.rowStates[2].get(15) == false) { 
+    
+    Msg.add(1.0);
+    mocoge.send(Msg, cogeIn);
+    m.setLed(15,2,1);
+  } else {
+    Msg.add(0.0);
+    mocoge.send(Msg, cogeIn);
+    m.setLed(15,2,0);
+  }
+}
 
 
   
