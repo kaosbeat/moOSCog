@@ -1,4 +1,4 @@
-lass Monome {
+class Monome {
   
   BitSet[] rowStates; //internal bookkeeping
   int dim_x = 8;
@@ -38,7 +38,9 @@ lass Monome {
       Msg.add(row);
       if (state == 1) { 
         Msg.add(255);
+        Msg.add(255);
       } else {
+        Msg.add(0);
         Msg.add(0);
       }
       cogome.send(Msg, monomeIn);

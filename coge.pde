@@ -84,20 +84,20 @@ void seq1toggle(){
   }
 }
 
-void bank1select(){
+void bank0select(int col){
+  OscMessage Msg = new OscMessage("/"+ m.prefix + "/bank0select" + col);
+  m.setRow(5,0);
+  m.setLed(col,5,1); 
+  mocoge.send(Msg, cogeIn);
+  
+}
+
+void bank1select(int col){
   OscMessage Msg = new OscMessage("/"+ m.prefix + "/bank1select" + col);
+  m.setRow(6,0);
   m.setLed(col,6,1); 
- 
-  if (m.rowStates[2].get(15) == false) { 
-    
-    Msg.add(1.0);
-    mocoge.send(Msg, cogeIn);
-    m.setLed(15,2,1);
-  } else {
-    Msg.add(0.0);
-    mocoge.send(Msg, cogeIn);
-    m.setLed(15,2,0);
-  }
+  mocoge.send(Msg, cogeIn);
+  
 }
 
 

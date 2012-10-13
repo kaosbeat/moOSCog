@@ -270,8 +270,10 @@ void oscEvent(OscMessage theOscMessage) {
          if (col == 15) {seq1toggle();}
       }
      
+    } else if(row == 5 ) {
+        bank0select(col);
     } else if(row == 6 ) {
-        
+        bank1select(col); 
       
     } else if(col == 15 && row == 7) {
       if (state == 1) {
