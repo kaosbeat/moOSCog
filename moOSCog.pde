@@ -264,107 +264,14 @@ void oscEvent(OscMessage theOscMessage) {
       if (state == 1 && row == 1 && m.rowStates[2].get(15) == false){
          banktrigger(col,row);
       }
-    } else if(col == 0 && row > 3 && row < 6 ) {
-      if (state == 1) {
-        masterLayer(row); 
-      }
-    } else if(col > 0 && col < 4 && row > 2 && row < 8 && state == 1) {
-      if (col == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {5});}
-        if (row == 5) { masterEffect(row, col,new int[] {4});}
-        if (row == 6) { masterEffect(row, col,new int[] {7});}
-        if (row == 7) { masterEffect(row, col,new int[] {6});}
-      } else if (col == 2) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {5});}
-        if (row == 5) { masterEffect(row, col,new int[] {4});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-      } else if (col == 3) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {5});}
-        if (row == 5) { masterEffect(row, col,new int[] {4});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-        if (row == 7) { masterEffect(row, col,new int[] {});}
-      }
-   /////FXCHAIN 1
-   } else if(col == 5 && row > 2 && row < 8 ) { //city lights
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-      }
-    } else if(col == 6 && row > 2 && row < 8 ) { //Frames and shapes
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-        if (row == 7) { masterEffect(row, col,new int[] {});}
-      } 
-    } else if(col == 7 && row > 2 && row < 8 ) { //dot screen
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-      }
-    } else if(col == 8 && row > 2 && row < 8 ) { ///target crosshair
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-        if (row == 7) { masterEffect(row, col,new int[] {});}
-      }
-    } else if(col == 9 && row > 2 && row < 8 ) { ///blazed trail
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-        if (row == 7) { masterEffect(row, col,new int[] {});}
-      }
-   /////FXCHAIN 2
-    } else if(col == 10 && row > 2 && row < 8 ) { /// M8 trace
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-      }
-    } else if(col == 11 && row > 2 && row < 8 ) { ///BAD TV
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-        if (row == 7) { masterEffect(row, col,new int[] {});}
-      }
-    } else if(col == 12 && row > 2 && row < 8 ) { ///RGB shift
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-      }   
-    } else if(col == 13 && row > 2 && row < 8 ) { ///PUSH XY
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-      }
-    } else if(col == 14 && row > 2 && row < 8 ) { ///Konstructivist
-      if (state == 1) {
-        if (row == 3) { masterEffect(row, col,new int[] {});}
-        if (row == 4) { masterEffect(row, col,new int[] {});}
-        if (row == 5) { masterEffect(row, col,new int[] {});}
-        if (row == 6) { masterEffect(row, col,new int[] {});}
-        if (row == 7) { masterEffect(row, col,new int[] {});}
-      }
     } else if(row == 2) {  ////alll the sequencer controls
       if (state ==1) {
          if (col == 0) {seq0toggle();}
          if (col == 15) {seq1toggle();}
       }
+     
+    } else if(row == 6 ) {
+        
       
     } else if(col == 15 && row == 7) {
       if (state == 1) {
