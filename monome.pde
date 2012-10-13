@@ -1,4 +1,4 @@
-class Monome {
+lass Monome {
   
   BitSet[] rowStates; //internal bookkeeping
   int dim_x = 8;
@@ -32,6 +32,22 @@ class Monome {
       }
       
   }
+  
+    void setRow(int row, int state) {
+      OscMessage Msg = new OscMessage("/"+ this.prefix + "/led_row" );
+      Msg.add(row);
+      if (state == 1) { 
+        Msg.add(255);
+      } else {
+        Msg.add(0);
+      }
+      cogome.send(Msg, monomeIn);
+      for(int i=0;i<dim_y;i++){
+        rowStates[row].set(i,intToBoolean(state));
+      }
+      
+  }
+
 
   
   void setLed(int col, int row, int state){
