@@ -269,7 +269,10 @@ void oscEvent(OscMessage theOscMessage) {
          if (col == 0) {seq0toggle();}
          if (col == 15) {seq1toggle();}
       }
-     
+    } else if(row == 3 ) {
+        chaineffect(row,col);
+    } else if(row == 4 ) {
+        chaineffect(row,col);
     } else if(row == 5 ) {
         bank0select(col);
     } else if(row == 6 ) {
