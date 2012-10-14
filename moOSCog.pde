@@ -7,7 +7,7 @@ PImage moOSCog;
 
 
 ///monome app parameters
-int seqrow;
+int seqrow, effectSwitch;
 
 ///coges parameters
 int seq0step, seq1step,stepstate, seq0prevstep, seq1prevstep;
@@ -63,7 +63,7 @@ void oscEvent(OscMessage theOscMessage) {
     //}
   }
   
-  
+
   
 
  ////SEQ0EVENTS
@@ -237,6 +237,9 @@ void oscEvent(OscMessage theOscMessage) {
   }
 
 
+
+
+
 //} else {
 ////MONOMEMESSAGES
     if(theOscMessage.checkAddrPattern("/cogeVJ/press")==true) {
@@ -269,10 +272,10 @@ void oscEvent(OscMessage theOscMessage) {
          if (col == 0) {seq0toggle();}
          if (col == 15) {seq1toggle();}
       }
-    } else if(row == 3 ) {
-        chaineffect(row,col);
+    } else if(row == 3 ) { 
+        chainEffect(row,col,state);
     } else if(row == 4 ) {
-        chaineffect(row,col);
+        chainEffect(row,col,state);
     } else if(row == 5 ) {
         bank0select(col);
     } else if(row == 6 ) {
@@ -282,7 +285,14 @@ void oscEvent(OscMessage theOscMessage) {
       if (state == 1) {
         tapBPM(state); 
       }
+    } else if(col == 0 && row == 7) {
+      if (state == 1) {
+        effectSwitch = 1; 
+      } else {
+        effectSwitch = 0; 
+      } 
     }
+    
   } 
 }
 

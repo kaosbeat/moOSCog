@@ -52,27 +52,44 @@ void masterEffect(int row, int col, int[] toggle){
     }  
   }
   
-  
-void chainEffect(int row, int col, int[] toggle){   
-   OscMessage Msg = new OscMessage("/"+ m.prefix + "/chain" +row+ "Effect"+col);
-   if (m.rowStates[row].get(col) == false) { 
-    Msg.add(1);
-    mocoge.send(Msg, cogeIn);
-    m.setLed(col,row,1);
-  } else {
-    Msg.add(0);
-    mocoge.send(Msg, cogeIn);
-    m.setLed(col,row,1);
-  } 
-}
+
+
+void chainEffect(int row, int col, int state){   
+  OscMessage Msg = new OscMessage("/"+ m.prefix + "/chain" +row+ "Effect"+col); 
+  if (state == 1) {
+    if (m.rowStates[row].get(col) == false) {
+      Msg.add(1);
+      mocoge.send(Msg, cogeIn);
+      m.setLed(col,row,1);
+    } else {
+      Msg.add(0);
+      mocoge.send(Msg, cogeIn);
+      m.setLed(col,row,0); 
+    }  
+  } else if (state == 0) {
+   if (effectSwitch == 0) {
+        if (m.rowStates[row].get(col) == false) {
+      Msg.add(1);
+      mocoge.send(Msg, cogeIn);
+      m.setLed(col,row,1);
+    } else {
+      Msg.add(0);
+      mocoge.send(Msg, cogeIn);
+      m.setLed(col,row,0); 
+    }  
+   }    
+  }
+} 
 
 void seq0toggle(){
   OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq0toggle");
-  if (m.rowStates[2].get(0) == false) { 
+  if (m.rowStates[2].get(0) == false) {
+    println( m.rowStates[2].get(0) );
     Msg.add(1);
     mocoge.send(Msg, cogeIn);
     m.setLed(0,2,1);
   } else {
+    println( m.rowStates[2].get(0) );
     Msg.add(0);
     mocoge.send(Msg, cogeIn);
     m.setLed(0,2,0);
