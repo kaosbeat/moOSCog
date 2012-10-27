@@ -1,3 +1,8 @@
+///start MAX5 - monemeserial
+///start this patch
+///start Coge
+
+
 import oscP5.*;
 import netP5.*;
 OscP5 mocoge, cogome;
@@ -271,7 +276,7 @@ void oscEvent(OscMessage theOscMessage) {
       if (state ==1) {
          if (col == 0) {seq0toggle();}
          if (col == 15) {seq1toggle();}
-      }
+         else seqBeats(col,row,state);} //(col 1-6 & 9-14)
     } else if(row == 3 ) { 
         chainEffect(row,col,state);
     } else if(row == 4 ) {
