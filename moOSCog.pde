@@ -290,6 +290,10 @@ void oscEvent(OscMessage theOscMessage) {
       if (state == 1) {
         tapBPM(state); 
       }
+     } else if(col == 14 && row == 7) {
+      if (state == 1) {
+        threeDtoggle(); 
+      }
     } else if(col == 0 && row == 7) {
       if (state == 1) {
         effectSwitch = 1; 
