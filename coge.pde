@@ -5,6 +5,26 @@ void setSeq(int pos, int seq, int state) {
       mocoge.send(Msg, cogeIn);
 }
 
+void seqBeats(int col, int row, int state) {
+     OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq" + row + "beats" + col);
+     Msg.add(1.0);
+     m.setLed(1,2,0);
+     m.setLed(2,2,0);
+     m.setLed(3,2,0);
+     m.setLed(4,2,0);
+     m.setLed(5,2,0);
+     m.setLed(6,2,0);
+     m.setLed(9,2,0);
+     m.setLed(10,2,0);
+     m.setLed(11,2,0);
+     m.setLed(12,2,0);
+     m.setLed(13,2,0);
+     m.setLed(14,2,0);
+     m.setLed(col,row,1);
+     mocoge.send(Msg, cogeIn);
+}
+
+
 
 void tapBPM(int state) {
       OscMessage Msg = new OscMessage("/"+ m.prefix + "/tapBPM");
@@ -122,6 +142,18 @@ void bank1select(int col){
   m.setRow(6,0);
   m.setLed(col,6,1); 
   mocoge.send(Msg, cogeIn);
+  if (col == 15) {
+    OscMessage Msg = new OscMessage("/"+ m.prefix + "/threedee");
+    Msg.add(1.0);
+    mocoge.send(Msg, cogeIn);
+    OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1toggle");
+    Msg.add(0.0);
+    mocoge.send(Msg, cogeIn);
+    
+  } else {
+    OscMessage Msg = new OscMessage("/"+ m.prefix + "/twoodee");
+    Msg.add(1.0);
+    mocoge.send(Msg, cogeIn);
   
 }
 
