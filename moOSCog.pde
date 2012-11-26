@@ -284,7 +284,7 @@ void oscEvent(OscMessage theOscMessage) {
     } else if(row == 5 ) {
         bank0select(col);
     } else if(row == 6 ) {
-        bank1select(col); 
+        bank1select(col,state); 
       
     } else if(col == 15 && row == 7) {
       if (state == 1) {
