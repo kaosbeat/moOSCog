@@ -129,6 +129,9 @@ void seq1toggle(){
   }
 }
 
+
+
+
 void bank0select(int col){
   OscMessage Msg = new OscMessage("/"+ m.prefix + "/bank0select" + col);
   m.setRow(5,0);
@@ -137,24 +140,30 @@ void bank0select(int col){
   
 }
 
-void bank1select(int col){
-  OscMessage Msg = new OscMessage("/"+ m.prefix + "/bank1select" + col);
-  m.setRow(6,0);
-  m.setLed(col,6,1); 
-  mocoge.send(Msg, cogeIn);
-  if (col == 15) {
-    OscMessage Msg = new OscMessage("/"+ m.prefix + "/threedee");
-    Msg.add(1.0);
-    mocoge.send(Msg, cogeIn);
-    OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1toggle");
-    Msg.add(0.0);
-    mocoge.send(Msg, cogeIn);
-    
-  } else {
-    OscMessage Msg = new OscMessage("/"+ m.prefix + "/twoodee");
-    Msg.add(1.0);
-    mocoge.send(Msg, cogeIn);
+void bank1select(int col,int state){
+    if (col == 15 & state == 1) {
+      OscMessage Msg1 = new OscMessage("/"+ m.prefix + "/threedee");
+      mocoge.send(Msg1, cogeIn);
+      OscMessage Msg4 = new OscMessage("/"+ m.prefix + "/bank1select" + col);
+      mocoge.send(Msg4, cogeIn);
+      if (m.rowStates[2].get(15) == true) {
+         seq1toggle();
+      }
+      m.setRow(6,0);
+      m.setLed(col,6,1); 
+    } else if (col == 15 & state == 0) {
   
+    } else {
+      if (m.rowStates[6].get(15) == true){
+      OscMessage Msg3 = new OscMessage("/"+ m.prefix + "/twoodee");
+      Msg3.add(1.0);
+      mocoge.send(Msg3, cogeIn);
+      }
+      OscMessage Msg = new OscMessage("/"+ m.prefix + "/bank1select" + col);
+      m.setRow(6,0);
+      m.setLed(col,6,1); 
+      mocoge.send(Msg, cogeIn); 
+    }
 }
 
 
