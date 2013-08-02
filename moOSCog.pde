@@ -5,6 +5,7 @@
 
 import oscP5.*;
 import netP5.*;
+import java.util.BitSet;
 OscP5 mocoge, cogome;
 NetAddress monomeIn, cogeIn;
 Monome m;
