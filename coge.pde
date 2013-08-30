@@ -182,7 +182,24 @@ void threeDtoggle(){
     }
   }
 }
-  
+
+//void blacktoggle(){
+//  if (m.rowStates[7].get(2) == false) {
+//    
+//    if (m.rowStates[7].get(14) == false) { 
+//      OscMessage Msg = new OscMessage("/"+ m.prefix + "/threeDtoggle");
+//      Msg.add(1.0);
+//      mocoge.send(Msg, cogeIn);
+//      m.setLed(14,7,1);
+//    } else {
+//      OscMessage Msg = new OscMessage("/"+ m.prefix + "/threedee");
+//      //Msg.add(0.0);
+//      mocoge.send(Msg, cogeIn);
+//      m.setLed(14,7,0);
+//    }
+//  }
+//}
+//  
 void setSeqs() {
       OscMessage Msg = new OscMessage("/"+ m.prefix + "/seq1pos");
       Msg.add(0.5);
